@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="isolate bg-white px-6 py-20 sm:py-32 lg:px-8">
+    <div
+      class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+      aria-hidden="true"
+    >
+      <div
+        class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+        style="
+          clip-path: polygon(
+            74.1% 44.1%,
+            100% 61.6%,
+            97.5% 26.9%,
+            85.5% 0.1%,
+            80.7% 2%,
+            72.5% 32.5%,
+            60.2% 62.4%,
+            52.4% 68.1%,
+            47.5% 58.3%,
+            45.2% 34.5%,
+            27.5% 76.7%,
+            0.1% 64.9%,
+            17.9% 100%,
+            27.6% 76.8%,
+            76.1% 97.7%,
+            74.1% 44.1%
+          );
+        "
+      ></div>
+    </div>
+    <div class="mx-auto max-w-2xl text-center">
+      <h2
+        class="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
+      >
+        Enter Features and Select Model
+      </h2>
+      <p class="mt-2 text-lg text-gray-600">
+        Provide input values for prediction.
+      </p>
+    </div>
+    <form
+      action="/predict"
+      method="POST"
+      class="mx-auto mt-8 max-w-xl sm:mt-20"
+    >
+      <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+        <div>
+          <label class="block text-sm font-semibold text-gray-900"
+            >Sepal Length</label
+          >
+          <input
+            type="text"
+            name="sl"
+            required
+            class="mt-2.5 w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder-gray-400 focus:outline-2 focus:outline-indigo-600"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-900"
+            >Sepal Width</label
+          >
+          <input
+            type="text"
+            name="sw"
+            required
+            class="mt-2.5 w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder-gray-400 focus:outline-2 focus:outline-indigo-600"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-900"
+            >Petal Length</label
+          >
+          <input
+            type="text"
+            name="pl"
+            required
+            class="mt-2.5 w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder-gray-400 focus:outline-2 focus:outline-indigo-600"
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-900"
+            >Petal Width</label
+          >
+          <input
+            type="text"
+            name="pw"
+            required
+            class="mt-2.5 w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder-gray-400 focus:outline-2 focus:outline-indigo-600"
+          />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="block text-sm font-semibold text-gray-900"
+            >Select Model</label
+          >
+          <select
+            name="model"
+            class="mt-2.5 w-full capitalize rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline outline-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600"
+          >
+            {% for key, value in models.items() %}
+            <option value="{{ key }}" class="capitalize">{{ key }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="mt-10">
+        <button
+          type="submit"
+          class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-2 focus:outline-indigo-600"
+        >
+          Predict
+        </button>
+      </div>
+    </form>
+  </body>
+</html>
